@@ -1,0 +1,138 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Salesforce Account sObject API",
+    "version": "59.0",
+    "description": "Create, read, update, and delete Salesforce Account records."
+  },
+  "servers": [
+    { "url": "https://instance.salesforce.com/services/data/v59.0" }
+  ],
+  "security": [
+    { "bearerAuth": [] }
+  ],
+  "paths": {
+    "/sobjects/Account": {
+      "get": {
+        "operationId": "listAccounts",
+        "summary": "List accounts",
+        "responses": {
+          "200": {
+            "description": "A page of accounts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Account" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAccount",
+        "summary": "Create an account",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AccountInput" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The created account",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Account" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sobjects/Account/{id}": {
+      "get": {
+        "operationId": "getAccount",
+        "summary": "Retrieve an account",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested account",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Account" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAccount",
+        "summary": "Update an account",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AccountInput" }
+            }
+          }
+        },
+        "responses": {
+          "204": { "description": "Updated" }
+        }
+      },
+      "delete": {
+        "operationId": "deleteAccount",
+        "summary": "Delete an account",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "204": { "description": "Deleted" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "AccountInput": {
+        "type": "object",
+        "required": ["Name"],
+        "properties": {
+          "Name": { "type": "string" },
+          "Industry": { "type": "string" },
+          "Phone": { "type": "string" },
+          "Website": { "type": "string" },
+          "AnnualRevenue": { "type": "number" }
+        }
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "Name": { "type": "string" },
+          "Industry": { "type": "string" },
+          "Phone": { "type": "string" },
+          "Website": { "type": "string" },
+          "AnnualRevenue": { "type": "number" },
+          "CreatedDate": { "type": "string" },
+          "LastModifiedDate": { "type": "string" }
+        }
+      }
+    }
+  }
+}

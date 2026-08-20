@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      description: "Create, read, update, and delete Salesforce Account records."
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "bearerAuth"
+        type: "http"
+      }
+      servers: [
+        {
+          url: "https://instance.salesforce.com/services/data/v59.0"
+        }
+      ]
+      summary: "Create, read, update, and delete Salesforce Account records."
+      title: "Salesforce Account sObject API"
+      version: "59.0"
+      website: "https://instance.salesforce.com"
+    }
+  }
+}
+

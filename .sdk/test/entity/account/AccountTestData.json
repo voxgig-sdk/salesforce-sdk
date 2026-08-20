@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "account": {
+      "ACCOUNT00": {
+        "AnnualRevenue": 80,
+        "CreatedDate": "s51",
+        "Industry": "s52",
+        "LastModifiedDate": "s53",
+        "Name": "s54",
+        "Phone": "s55",
+        "Website": "s56",
+        "id": "ACCOUNT00"
+      },
+      "ACCOUNT01": {
+        "AnnualRevenue": 160,
+        "CreatedDate": "sa1",
+        "Industry": "sa2",
+        "LastModifiedDate": "sa3",
+        "Name": "sa4",
+        "Phone": "sa5",
+        "Website": "sa6",
+        "id": "ACCOUNT01"
+      },
+      "ACCOUNT02": {
+        "AnnualRevenue": 240,
+        "CreatedDate": "sf1",
+        "Industry": "sf2",
+        "LastModifiedDate": "sf3",
+        "Name": "sf4",
+        "Phone": "sf5",
+        "Website": "sf6",
+        "id": "ACCOUNT02"
+      }
+    }
+  },
+  "new": {
+    "account": {
+      "account_ref01": {
+        "AnnualRevenue": 320,
+        "CreatedDate": "s141",
+        "Industry": "s142",
+        "LastModifiedDate": "s143",
+        "Name": "s144",
+        "Phone": "s145",
+        "Website": "s146"
+      }
+    }
+  }
+}
