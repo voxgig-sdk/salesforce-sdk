@@ -10,6 +10,8 @@ This is an unofficial SDK for the Salesforce Account sObject public API, generat
 
 Learn more about Voxgig SDKs at [voxgig.com/sdk](https://voxgig.com/sdk/).
 
+> TypeScript, Python, PHP, Golang, Lua, JavaScript SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
+
 ## Entities, not endpoints
 
 This SDK exposes the API as a small set of **semantic entities** — Account — that you
@@ -49,11 +51,62 @@ const accounts = await client.Account().list()
 console.log(accounts)
 ```
 
+### Python
+
+```python
+client = SalesforceSDK.test()
+accounts = client.Account().list()
+print(accounts)
+```
+
+### PHP
+
+```php
+// Seed fixture data so offline calls resolve without a live server.
+$client = SalesforceSDK::test([
+    "entity" => ["account" => ["test01" => ["id" => "test01"]]],
+]);
+$accounts = $client->Account()->list();
+```
+
+### Golang
+
+```go
+client := sdk.Test()
+result, err := client.Account(nil).List(
+    nil, nil,
+)
+```
+
+### Lua
+
+```lua
+local client = sdk.test()
+local results, err = client:Account():list()
+```
+
+### JavaScript
+
+```js
+const client = SalesforceSDK.test()
+const accounts = await client.Account().list()
+// accounts is an array of entities, populated with mock data
+// — call accounts[0].data() for the record itself
+console.log(accounts)
+```
+
 ## Packages
 
 | Language | Package | Install |
 | --- | --- | --- |
 | TypeScript | `@voxgig-sdk/salesforce` | publish pending — [install from git tag](https://github.com/voxgig-sdk/salesforce-sdk/releases) |
+| Python | `voxgig-sdk-salesforce` | publish pending — [install from git tag](https://github.com/voxgig-sdk/salesforce-sdk/releases) |
+| PHP | `voxgig-sdk/salesforce` | publish pending — [install from git tag](https://github.com/voxgig-sdk/salesforce-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/salesforce-sdk/go` | `go get github.com/voxgig-sdk/salesforce-sdk/go@latest` |
+| Lua | `voxgig-sdk-salesforce` | publish pending — [install from git tag](https://github.com/voxgig-sdk/salesforce-sdk/releases) |
+| JavaScript | `@voxgig-sdk/salesforce-js` | publish pending — [install from git tag](https://github.com/voxgig-sdk/salesforce-sdk/releases) |
+| Go CLI | `github.com/voxgig-sdk/salesforce-sdk/go-cli` | `go install github.com/voxgig-sdk/salesforce-sdk/go-cli/cmd/salesforce@latest` |
+| Go MCP server | `github.com/voxgig-sdk/salesforce-sdk/go-mcp` | `go get github.com/voxgig-sdk/salesforce-sdk/go-mcp@latest` |
 
 ## Quickstart
 
@@ -79,7 +132,31 @@ See the [TypeScript README](ts/README.md) for the full guide.
 
 | Surface | Path |
 | --- | --- |
-| **SDK** (TypeScript) | `ts/` |
+| **SDK** (TypeScript, Python, PHP, Golang, Lua, JavaScript) | `ts/` `py/` `php/` `go/` `lua/` `js/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
+
+## Use it from an AI agent (MCP)
+
+The generated MCP server exposes every operation in this SDK as an
+[MCP](https://modelcontextprotocol.io) tool that Claude, Cursor or Cline
+can call directly. Build and register it:
+
+```bash
+cd go-mcp && go build -o salesforce-mcp .
+```
+
+Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
+
+```json
+{
+  "mcpServers": {
+    "salesforce": {
+      "command": "/abs/path/to/salesforce-mcp"
+    }
+  }
+}
+```
 
 ## Entities
 
@@ -91,6 +168,98 @@ The API exposes one entity:
 
 The operations available across these entities are **load**, **list**, **create**, **update**, **remove** — see each entity's
 own list above for exactly which it supports.
+
+## Quickstart in other languages
+
+### Python
+
+```python
+import os
+from salesforce_sdk import SalesforceSDK
+
+client = SalesforceSDK({
+    "apikey": os.environ.get("SALESFORCE_APIKEY"),
+})
+
+# List all accounts (returns a list, raises on error)
+accounts = client.Account().list()
+for account in accounts:
+    print(account)
+
+# Load a specific account (returns the record, raises on error)
+account = client.Account().load({"id": "example_id"})
+print(account)
+```
+
+### PHP
+
+```php
+<?php
+require_once 'salesforce_sdk.php';
+
+$client = new SalesforceSDK([
+    "apikey" => getenv("SALESFORCE_APIKEY"),
+]);
+
+// List all accounts (returns an array; throws on error)
+$accounts = $client->Account()->list();
+print_r($accounts);
+
+// Load a specific account (returns the ENTITY; call data_get() for the record; throws on error)
+$account = $client->Account()->load(["id" => "example_id"]);
+print_r($account);
+```
+
+### Golang
+
+```go
+import sdk "github.com/voxgig-sdk/salesforce-sdk/go"
+
+client := sdk.NewSalesforceSDK(map[string]any{
+    "apikey": os.Getenv("SALESFORCE_APIKEY"),
+})
+
+// List all accounts
+accounts, err := client.Account(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(accounts)
+```
+
+### Lua
+
+```lua
+local sdk = require("salesforce_sdk")
+
+local client = sdk.new({
+  apikey = os.getenv("SALESFORCE_APIKEY"),
+})
+
+-- List all accounts
+local accounts, err = client:Account():list()
+print(accounts)
+
+-- Load a specific account
+local account, err = client:Account():load({ id = "example_id" })
+print(account)
+```
+
+### JavaScript
+
+```js
+const { SalesforceSDK } = require('@voxgig-sdk/salesforce-js')
+
+const client = new SalesforceSDK({
+  apikey: process.env.SALESFORCE_APIKEY,
+})
+
+// List all accounts (returns an array)
+const accounts = await client.Account().list()
+for (const account of accounts) {
+  console.log(account)
+}
+```
 
 ## Direct and prepare
 
@@ -110,6 +279,59 @@ When the entity interface does not cover an endpoint, use `direct`:
 
 **TypeScript:**
 ```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example' },
+})
+if (result instanceof Error) {
+  throw result
+}
+console.log(result.data)
+```
+
+**Python:**
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example"},
+})
+```
+
+**PHP:**
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example"],
+]);
+```
+
+**Go:**
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example"},
+})
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+**Lua:**
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example" },
+})
+```
+
+**JavaScript:**
+```js
 const result = await client.direct({
   path: '/api/resource/{id}',
   method: 'GET',
@@ -149,6 +371,11 @@ Pass custom features via the `extend` option at construction time.
 ## Per-language documentation
 
 - [TypeScript](ts/README.md)
+- [Python](py/README.md)
+- [PHP](php/README.md)
+- [Golang](go/README.md)
+- [Lua](lua/README.md)
+- [JavaScript](js/README.md)
 
 ## Upstream API
 
