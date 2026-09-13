@@ -1,6 +1,15 @@
 {
+  "NAME": "SALESFORCE",
+  "Name": "Salesforce",
   "def": "salesforce-accounts-only.json",
   "main": {
+    "api": {
+      "entity": {},
+      "guide": {}
+    },
+    "custom": {
+      "plurals": {}
+    },
     "def": {
       "desc": ""
     },
@@ -1116,5 +1125,8 @@
     }
   },
   "name": "salesforce",
+  "name-": "salesforce",
+  "name_": "salesforce",
+  "name__orig": "salesforce",
   "origin": "voxgig-sdk"
 }
