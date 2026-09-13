@@ -70,9 +70,13 @@ main: kit: entity: account: {
         {
           method: "POST"
           orig: "/sobjects/Account"
-          parts: [
-            "sobjects"
-            "Account"
+          segments: [
+            {
+              lit: "sobjects"
+            }
+            {
+              lit: "Account"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -87,9 +91,13 @@ main: kit: entity: account: {
         {
           method: "GET"
           orig: "/sobjects/Account"
-          parts: [
-            "sobjects"
-            "Account"
+          segments: [
+            {
+              lit: "sobjects"
+            }
+            {
+              lit: "Account"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -115,10 +123,16 @@ main: kit: entity: account: {
           }
           method: "GET"
           orig: "/sobjects/Account/{id}"
-          parts: [
-            "sobjects"
-            "Account"
-            "{id}"
+          segments: [
+            {
+              lit: "sobjects"
+            }
+            {
+              lit: "Account"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -149,10 +163,16 @@ main: kit: entity: account: {
           }
           method: "DELETE"
           orig: "/sobjects/Account/{id}"
-          parts: [
-            "sobjects"
-            "Account"
-            "{id}"
+          segments: [
+            {
+              lit: "sobjects"
+            }
+            {
+              lit: "Account"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -183,10 +203,16 @@ main: kit: entity: account: {
           }
           method: "PATCH"
           orig: "/sobjects/Account/{id}"
-          parts: [
-            "sobjects"
-            "Account"
-            "{id}"
+          segments: [
+            {
+              lit: "sobjects"
+            }
+            {
+              lit: "Account"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

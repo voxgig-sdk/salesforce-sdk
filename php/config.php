@@ -103,6 +103,10 @@ class SalesforceConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'account',
           'op' => [
             'create' => [
@@ -114,14 +118,22 @@ class SalesforceConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/sobjects/Account',
-                  'parts' => [
-                    'sobjects',
-                    'Account',
+                  'segments' => [
+                    [
+                      'lit' => 'sobjects',
+                    ],
+                    [
+                      'lit' => 'Account',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'sobjects',
+                    'Account',
                   ],
                 ],
               ],
@@ -135,14 +147,22 @@ class SalesforceConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sobjects/Account',
-                  'parts' => [
-                    'sobjects',
-                    'Account',
+                  'segments' => [
+                    [
+                      'lit' => 'sobjects',
+                    ],
+                    [
+                      'lit' => 'Account',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'sobjects',
+                    'Account',
                   ],
                 ],
               ],
@@ -166,10 +186,16 @@ class SalesforceConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/sobjects/Account/{id}',
-                  'parts' => [
-                    'sobjects',
-                    'Account',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'sobjects',
+                    ],
+                    [
+                      'lit' => 'Account',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -179,6 +205,11 @@ class SalesforceConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'sobjects',
+                    'Account',
+                    '{id}',
                   ],
                 ],
               ],
@@ -202,10 +233,16 @@ class SalesforceConfig
                   'kind' => 'http',
                   'method' => 'DELETE',
                   'orig' => '/sobjects/Account/{id}',
-                  'parts' => [
-                    'sobjects',
-                    'Account',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'sobjects',
+                    ],
+                    [
+                      'lit' => 'Account',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -215,6 +252,11 @@ class SalesforceConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'sobjects',
+                    'Account',
+                    '{id}',
                   ],
                 ],
               ],
@@ -238,10 +280,16 @@ class SalesforceConfig
                   'kind' => 'http',
                   'method' => 'PATCH',
                   'orig' => '/sobjects/Account/{id}',
-                  'parts' => [
-                    'sobjects',
-                    'Account',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'sobjects',
+                    ],
+                    [
+                      'lit' => 'Account',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -251,6 +299,11 @@ class SalesforceConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'sobjects',
+                    'Account',
+                    '{id}',
                   ],
                 ],
               ],

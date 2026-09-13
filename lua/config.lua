@@ -77,6 +77,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "account",
         ["op"] = {
           ["create"] = {
@@ -88,14 +92,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/sobjects/Account",
-                ["parts"] = {
-                  "sobjects",
-                  "Account",
+                ["segments"] = {
+                  {
+                    ["lit"] = "sobjects",
+                  },
+                  {
+                    ["lit"] = "Account",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "sobjects",
+                  "Account",
                 },
               },
             },
@@ -109,14 +121,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sobjects/Account",
-                ["parts"] = {
-                  "sobjects",
-                  "Account",
+                ["segments"] = {
+                  {
+                    ["lit"] = "sobjects",
+                  },
+                  {
+                    ["lit"] = "Account",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "sobjects",
+                  "Account",
                 },
               },
             },
@@ -140,10 +160,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sobjects/Account/{id}",
-                ["parts"] = {
-                  "sobjects",
-                  "Account",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "sobjects",
+                  },
+                  {
+                    ["lit"] = "Account",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -153,6 +179,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "sobjects",
+                  "Account",
+                  "{id}",
                 },
               },
             },
@@ -176,10 +207,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/sobjects/Account/{id}",
-                ["parts"] = {
-                  "sobjects",
-                  "Account",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "sobjects",
+                  },
+                  {
+                    ["lit"] = "Account",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -189,6 +226,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "sobjects",
+                  "Account",
+                  "{id}",
                 },
               },
             },
@@ -212,10 +254,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "PATCH",
                 ["orig"] = "/sobjects/Account/{id}",
-                ["parts"] = {
-                  "sobjects",
-                  "Account",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "sobjects",
+                  },
+                  {
+                    ["lit"] = "Account",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -225,6 +273,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "sobjects",
+                  "Account",
+                  "{id}",
                 },
               },
             },

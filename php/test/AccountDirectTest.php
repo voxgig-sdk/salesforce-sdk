@@ -123,15 +123,17 @@ function account_direct_setup($mockres)
     $env = Runner::env_override([
         "SALESFORCE_TEST_ACCOUNT_ENTID" => [],
         "SALESFORCE_TEST_LIVE" => "FALSE",
-        "SALESFORCE_APIKEY" => "NONE",
+        "SALESFORCE_APIKEY" => "",
     ]);
 
     $live = $env["SALESFORCE_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["SALESFORCE_APIKEY"],
-        ];
+        ]);
         $client = new SalesforceSDK($merged_opts);
         return [
             "client" => $client,

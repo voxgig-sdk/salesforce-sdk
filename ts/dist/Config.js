@@ -1,10 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.config = void 0;
+exports.FEATURE_PLUGINS = exports.config = void 0;
 const TestFeature_1 = require("./feature/test/TestFeature");
 const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
 };
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS = {};
+exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
@@ -90,6 +98,10 @@ class Config {
                     "type": "`$STRING`"
                 }
             ],
+            "id": {
+                "field": "id",
+                "name": "id"
+            },
             "name": "account",
             "op": {
                 "create": {
@@ -101,15 +113,23 @@ class Config {
                             "kind": "http",
                             "method": "POST",
                             "orig": "/sobjects/Account",
-                            "parts": [
-                                "sobjects",
-                                "Account"
+                            "segments": [
+                                {
+                                    "lit": "sobjects"
+                                },
+                                {
+                                    "lit": "Account"
+                                }
                             ],
                             "select": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
-                            }
+                            },
+                            "parts": [
+                                "sobjects",
+                                "Account"
+                            ]
                         }
                     ]
                 },
@@ -122,15 +142,23 @@ class Config {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/sobjects/Account",
-                            "parts": [
-                                "sobjects",
-                                "Account"
+                            "segments": [
+                                {
+                                    "lit": "sobjects"
+                                },
+                                {
+                                    "lit": "Account"
+                                }
                             ],
                             "select": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
-                            }
+                            },
+                            "parts": [
+                                "sobjects",
+                                "Account"
+                            ]
                         }
                     ]
                 },
@@ -153,10 +181,16 @@ class Config {
                             "kind": "http",
                             "method": "GET",
                             "orig": "/sobjects/Account/{id}",
-                            "parts": [
-                                "sobjects",
-                                "Account",
-                                "{id}"
+                            "segments": [
+                                {
+                                    "lit": "sobjects"
+                                },
+                                {
+                                    "lit": "Account"
+                                },
+                                {
+                                    "var": "id"
+                                }
                             ],
                             "select": {
                                 "exist": [
@@ -166,7 +200,12 @@ class Config {
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
-                            }
+                            },
+                            "parts": [
+                                "sobjects",
+                                "Account",
+                                "{id}"
+                            ]
                         }
                     ]
                 },
@@ -189,10 +228,16 @@ class Config {
                             "kind": "http",
                             "method": "DELETE",
                             "orig": "/sobjects/Account/{id}",
-                            "parts": [
-                                "sobjects",
-                                "Account",
-                                "{id}"
+                            "segments": [
+                                {
+                                    "lit": "sobjects"
+                                },
+                                {
+                                    "lit": "Account"
+                                },
+                                {
+                                    "var": "id"
+                                }
                             ],
                             "select": {
                                 "exist": [
@@ -202,7 +247,12 @@ class Config {
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
-                            }
+                            },
+                            "parts": [
+                                "sobjects",
+                                "Account",
+                                "{id}"
+                            ]
                         }
                     ]
                 },
@@ -225,10 +275,16 @@ class Config {
                             "kind": "http",
                             "method": "PATCH",
                             "orig": "/sobjects/Account/{id}",
-                            "parts": [
-                                "sobjects",
-                                "Account",
-                                "{id}"
+                            "segments": [
+                                {
+                                    "lit": "sobjects"
+                                },
+                                {
+                                    "lit": "Account"
+                                },
+                                {
+                                    "var": "id"
+                                }
                             ],
                             "select": {
                                 "exist": [
@@ -238,7 +294,12 @@ class Config {
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
-                            }
+                            },
+                            "parts": [
+                                "sobjects",
+                                "Account",
+                                "{id}"
+                            ]
                         }
                     ]
                 }

@@ -196,14 +196,22 @@ func accountDirectSetup(mockres any) *accountDirectSetupResult {
 	env := envOverride(map[string]any{
 		"SALESFORCE_TEST_ACCOUNT_ENTID": map[string]any{},
 		"SALESFORCE_TEST_LIVE":    "FALSE",
-		"SALESFORCE_APIKEY":       "NONE",
+		"SALESFORCE_APIKEY":       "",
 	})
 
 	live := env["SALESFORCE_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["SALESFORCE_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewSalesforceSDK(mergedOpts)
 
