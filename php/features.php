@@ -4,7 +4,14 @@ declare(strict_types=1);
 // Salesforce SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/DebugFeature.php';
+require_once __DIR__ . '/feature/IdempotencyFeature.php';
+require_once __DIR__ . '/feature/MetricsFeature.php';
+require_once __DIR__ . '/feature/PagingFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class SalesforceFeatures
@@ -14,8 +21,22 @@ class SalesforceFeatures
         switch ($name) {
             case "base":
                 return new SalesforceBaseFeature();
+            case "debug":
+                return new SalesforceDebugFeature();
+            case "idempotency":
+                return new SalesforceIdempotencyFeature();
+            case "metrics":
+                return new SalesforceMetricsFeature();
+            case "paging":
+                return new SalesforcePagingFeature();
+            case "ratelimit":
+                return new SalesforceRatelimitFeature();
+            case "retry":
+                return new SalesforceRetryFeature();
             case "test":
                 return new SalesforceTestFeature();
+            case "timeout":
+                return new SalesforceTimeoutFeature();
             default:
                 return new SalesforceBaseFeature();
         }
@@ -31,7 +52,14 @@ class SalesforceFeatures
     {
         switch ($name) {
             case "base":
+            case "debug":
+            case "idempotency":
+            case "metrics":
+            case "paging":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

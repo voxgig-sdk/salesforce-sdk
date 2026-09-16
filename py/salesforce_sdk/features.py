@@ -1,12 +1,26 @@
 # Salesforce SDK feature factory
 
 from salesforce_sdk.feature.base_feature import SalesforceBaseFeature
+from salesforce_sdk.feature.debug_feature import SalesforceDebugFeature
+from salesforce_sdk.feature.idempotency_feature import SalesforceIdempotencyFeature
+from salesforce_sdk.feature.metrics_feature import SalesforceMetricsFeature
+from salesforce_sdk.feature.paging_feature import SalesforcePagingFeature
+from salesforce_sdk.feature.ratelimit_feature import SalesforceRatelimitFeature
+from salesforce_sdk.feature.retry_feature import SalesforceRetryFeature
 from salesforce_sdk.feature.test_feature import SalesforceTestFeature
+from salesforce_sdk.feature.timeout_feature import SalesforceTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: SalesforceBaseFeature(),
+    "debug": lambda: SalesforceDebugFeature(),
+    "idempotency": lambda: SalesforceIdempotencyFeature(),
+    "metrics": lambda: SalesforceMetricsFeature(),
+    "paging": lambda: SalesforcePagingFeature(),
+    "ratelimit": lambda: SalesforceRatelimitFeature(),
+    "retry": lambda: SalesforceRetryFeature(),
     "test": lambda: SalesforceTestFeature(),
+    "timeout": lambda: SalesforceTimeoutFeature(),
 }
 
 

@@ -68,6 +68,12 @@ main: kit: entity: account: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /sobjects/Account"
+            json: "{\"operationId\":\"createAccount\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"AnnualRevenue\":{\"type\":\"number\"},\"Industry\":{\"type\":\"string\"},\"Name\":{\"type\":\"string\"},\"Phone\":{\"type\":\"string\"},\"Website\":{\"type\":\"string\"}},\"required\":[\"Name\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"AnnualRevenue\":{\"type\":\"number\"},\"CreatedDate\":{\"type\":\"string\"},\"Industry\":{\"type\":\"string\"},\"LastModifiedDate\":{\"type\":\"string\"},\"Name\":{\"type\":\"string\"},\"Phone\":{\"type\":\"string\"},\"Website\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"The created account\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/sobjects/Account"
           segments: [
@@ -89,6 +95,12 @@ main: kit: entity: account: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /sobjects/Account"
+            json: "{\"operationId\":\"listAccounts\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"AnnualRevenue\":{\"type\":\"number\"},\"CreatedDate\":{\"type\":\"string\"},\"Industry\":{\"type\":\"string\"},\"LastModifiedDate\":{\"type\":\"string\"},\"Name\":{\"type\":\"string\"},\"Phone\":{\"type\":\"string\"},\"Website\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"A page of accounts\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/sobjects/Account"
           segments: [
@@ -120,6 +132,12 @@ main: kit: entity: account: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /sobjects/Account/{id}"
+            json: "{\"operationId\":\"getAccount\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"AnnualRevenue\":{\"type\":\"number\"},\"CreatedDate\":{\"type\":\"string\"},\"Industry\":{\"type\":\"string\"},\"LastModifiedDate\":{\"type\":\"string\"},\"Name\":{\"type\":\"string\"},\"Phone\":{\"type\":\"string\"},\"Website\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"The requested account\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/sobjects/Account/{id}"
@@ -161,6 +179,12 @@ main: kit: entity: account: {
               }
             ]
           }
+          contract: {
+            id: "DELETE /sobjects/Account/{id}"
+            json: "{\"operationId\":\"deleteAccount\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"description\":\"Deleted\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "DELETE"
           orig: "/sobjects/Account/{id}"
           segments: [
@@ -200,6 +224,12 @@ main: kit: entity: account: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "PATCH /sobjects/Account/{id}"
+            json: "{\"operationId\":\"updateAccount\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"AnnualRevenue\":{\"type\":\"number\"},\"Industry\":{\"type\":\"string\"},\"Name\":{\"type\":\"string\"},\"Phone\":{\"type\":\"string\"},\"Website\":{\"type\":\"string\"}},\"required\":[\"Name\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"204\":{\"description\":\"Updated\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PATCH"
           orig: "/sobjects/Account/{id}"
